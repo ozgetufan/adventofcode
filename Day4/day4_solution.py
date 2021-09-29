@@ -52,6 +52,7 @@ for x in splitted_list:
 print(splitted_list)
 print(len(valid_test))
 print(valid_passports)
+print()
 
 
 
