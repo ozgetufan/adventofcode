@@ -5,8 +5,9 @@ big_list = []
 small_list = []
 splitted_list = []
 valid_test = []
+valid_pass = []
 
-print(lines[-1])
+# Part 1
 for i in range(len(lines)):
     if lines[i] != "":
         small_list.append(lines[i])
@@ -31,6 +32,7 @@ for ele in big_list:
 for x in splitted_list:
     if len(x) == 8:
         valid_test.append(1)
+        valid_pass.append(x)
     elif len(x) == 7:
         a_list = []
         for i in x:
@@ -38,21 +40,38 @@ for x in splitted_list:
                 a_list.append(1)
         if len(a_list) == 0:
             valid_test.append(1)
+            valid_pass.append(x)
     else:
         continue
-
-valid_passports = 0
-for x in splitted_list:
-    if len(x) == 8:
-        valid_passports += 1
-    elif len(x) == 7:
-        if all(["cid" not in field for field in x]):
-            valid_passports += 1
+# # Matteo's solution
+# valid_passports = 0
+# for x in splitted_list:
+#     if len(x) == 8:
+#         valid_passports += 1
+#     elif len(x) == 7:
+#         if all(["cid" not in field for field in x]):
+#             valid_passports += 1
 
 print(splitted_list)
 print(len(valid_test))
-print(valid_passports)
-print()
+
+
+#Part 2
+dict_list = []
+for x in valid_pass:
+    my_dict = {}
+    for each in x:
+        a, b = each.split(':')
+        my_dict[a] = b
+    dict_list.append(my_dict)
+
+for each_dict in dict_list:
+    for x in each_dict.keys():
+        if x == 'eyr' or x == 'byr' or x == 'iyr': #pid cannot be add because there is a 161cm value somewhere!!.
+            each_dict[x] = int(each_dict.get(x)) #set the values to integer
+
+print(dict_list)
+
 
 
 
