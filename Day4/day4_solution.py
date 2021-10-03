@@ -71,9 +71,26 @@ for each_dict in dict_list:
             each_dict[x] = int(each_dict.get(x)) #set the values to integer
 
 print(dict_list)
+print(len(dict_list))
 
+# Check four digits and eyr
+for each_dict in dict_list:
+    if len(str(each_dict['eyr'])) != 4 or len(str(each_dict['byr'])) != 4 or len(str(each_dict['iyr'])) != 4:
+        dict_list.remove(each_dict)
+    if each_dict['eyr'] < 2020 or each_dict['eyr'] > 2030:
+        dict_list.remove(each_dict)
 
+# Check byr
+for each_dict in dict_list:
+    if each_dict['byr'] < 1920 or each_dict['byr'] > 2002:
+        dict_list.remove(each_dict)
 
+# Check iyr
+for each_dict in dict_list:
+    if each_dict['iyr'] < 2010 or each_dict['iyr'] > 2020:
+        dict_list.remove(each_dict)
+
+print(len(dict_list))
 
 
 
