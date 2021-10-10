@@ -70,7 +70,6 @@ for each_dict in dict_list:
         if x == 'eyr' or x == 'byr' or x == 'iyr': #pid cannot be add because there is a 161cm value somewhere!!.
             each_dict[x] = int(each_dict.get(x)) #set the values to integer
 
-print(dict_list)
 print(len(dict_list))
 
 # Check four digits and eyr
@@ -90,8 +89,39 @@ for each_dict in dict_list:
     if each_dict['iyr'] < 2010 or each_dict['iyr'] > 2020:
         dict_list.remove(each_dict)
 
-print(len(dict_list))
+print(dict_list)
+# print(len(dict_list))
 
+# Check hgt
+for each_dict in dict_list:
+    if len(each_dict['hgt']) == 5 or len(each_dict['hgt']) == 4:
+        continue
+    else:
+        dict_list.remove(each_dict)
+
+# Check hgt -- cm
+for each_dict in dict_list:
+    if len(each_dict['hgt']) == 5:
+        if each_dict['hgt'][3] == 'c' and each_dict['hgt'][4] == 'm':
+            if 149 < int(each_dict['hgt'][:3]) < 194:
+                continue
+            else:
+                dict_list.remove(each_dict)
+        else:
+            dict_list.remove(each_dict)
+
+# Check hgt -- inc
+for each_dict in dict_list:
+    if len(each_dict['hgt']) == 3:
+        if each_dict['hgt'][2] == 'i' and each_dict['hgt'][3] == 'n':
+            if 58 < int(each_dict['hgt'][:2]) < 77:
+                continue
+            else:
+                dict_list.remove(each_dict)
+        else:
+            dict_list.remove(each_dict)
+
+print(len(dict_list))
 
 
 
