@@ -121,8 +121,26 @@ for each_dict in dict_list:
         else:
             dict_list.remove(each_dict)
 
-print(len(dict_list))
 
+# Check hcl
+for each_dict in dict_list:
+    if each_dict['hcl'][0] == '#' and len(each_dict['hcl']) == 7:
+        continue
+    else:
+        dict_list.remove(each_dict)
+
+
+hcl_values = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+for each_dict in dict_list:
+    n = 0
+    for x in each_dict['hcl'][1:]:
+        if x not in hcl_values:
+            n = n + 1
+    if n != 0:
+        dict_list.remove(each_dict)
+
+
+print(len(dict_list))
 
 
 
